@@ -46,8 +46,8 @@ namespace HomeWork.Controllers
             return View();
         }
 
-        [HttpGet("registraciq")]
-        public async Task<ActionResult> Registraciq(CreateUserInputModel input)
+        [HttpPost("registraciq")]
+        public async Task<ActionResult> Registraciq([FromForm] CreateUserInputModel input)
         {
             var result = await this.identity.Register(input);
 

@@ -64,7 +64,7 @@ namespace HomeWork.Services
         public TData Data
             => this.Succeeded
                 ? this.data
-                : throw new InvalidOperationException($"is not available with a failed result. Use {this.Errors} instead.");
+                : default;
 
         public static Result<TData> SuccessWith(TData data)
             => new Result<TData>(true, data, new List<string>());

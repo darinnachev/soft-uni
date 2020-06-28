@@ -1,7 +1,9 @@
 using AutoMapper;
 using HomeWork.Data;
 using HomeWork.Data.Models;
+using HomeWork.Services.Categories;
 using HomeWork.Services.Identity;
+using HomeWork.Services.Products;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +34,8 @@ namespace HomeWork
 
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IJwtTokenGeneratorService, JwtTokenGeneratorService>();
-
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IProductService, ProductService>();
 
             services
                 .AddDbContext<DataBaseContext>(options => options
@@ -112,6 +115,8 @@ namespace HomeWork
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.Initialize();
         }
     }
 }
